@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import NavBar from "./NavBar";
 
 function Q1({}) {
@@ -10,7 +9,11 @@ function Q1({}) {
   const [showData, setShowData] = useState(false);
 
   const handleClick = () => {
-    setShowData((isOpen) => !isOpen);
+      if(!materiel || !marque || !date || !category){
+          alert("Please fill in all the fields.")
+          return;
+        }
+        setShowData((isOpen) => !isOpen);
     
   };
         return (
@@ -21,10 +24,10 @@ function Q1({}) {
                       <h1>Gestion Materiel</h1>
               
                       <label>Code Materiel:</label>
-                      <input type="text" onChange={(e) => setMateriel(e.target.value)} />
+                      <input type="text" onChange={(e) => setMateriel(e.target.value)} required />
               
                       <label>Marque:</label>
-                      <select onChange={(e) => setMarque(e.target.value)}>
+                      <select onChange={(e) => setMarque(e.target.value)} required>
               <option selected hidden disabled>
                 Selectioner la marque :
               </option>
@@ -34,10 +37,10 @@ function Q1({}) {
                       </select>
               
                       <label>Date debut utilisation:</label>
-                      <input type="date" onChange={(e) => setDate(e.target.value)} />
+                      <input type="date" onChange={(e) => setDate(e.target.value)} required />
               
                       <label>Categorie:</label>
-                      <input type="text" onChange={(e) => setCategory(e.target.value)} />
+                      <input type="text" onChange={(e) => setCategory(e.target.value)} required />
               
                       <button
               style={{
